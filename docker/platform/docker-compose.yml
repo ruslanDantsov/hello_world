@@ -30,6 +30,6 @@ postgres:
   ports:
       - "5432:5432"
   environment:
-    - POSTGRES_DB: "octi"
-    - POSTGRES_USER: "octi"
-    - POSTGRES_PASSWORD: "octi"
+    - POSTGRES_DB: octi
+    - POSTGRES_USER: octi
+    - POSTGRES_PASSWORD: octi
