@@ -14,13 +14,13 @@ cache2:
    - "11212:11211"
 
 redis:
-  image: redis-server
+  image: redis
   container_name: redis-cluster
   expose:
     - 6379
   ports:
     - "6379:6379"
-  command: redis-server:
+  command: redis-server
 
 postgres:
   image: postgres:9.5
