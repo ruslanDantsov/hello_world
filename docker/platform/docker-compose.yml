@@ -18,4 +18,4 @@ redis:
   container_name: redis-cluster
   ports:
     - "6379:6379"
-  command: redis-server:
+  command: redis-server
