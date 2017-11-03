@@ -14,8 +14,22 @@ cache2:
    - "11212:11211"
 
 redis:
-  image: redis
+  image: redis-server
   container_name: redis-cluster
+  expose:
+    - 6379
   ports:
     - "6379:6379"
-  command: redis-server
+  command: redis-server:
+
+postgres:
+  image: postgres:9.5
+  container_name: postgres9.5
+  expose:
+    - 5432
+  ports:
+      - "5432:5432"
+  environment:
+    - POSTGRES_DB: "octi"
+    - POSTGRES_USER: "octi"
+    - POSTGRES_PASSWORD: "octi"
