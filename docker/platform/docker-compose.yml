@@ -1,0 +1,21 @@
+
+cache1:
+  image: memcached
+  expose:
+   - 11211
+  ports:
+   - "11211:11211"
+
+cache2:
+  image: memcached
+  expose:
+   - 11211
+  ports:
+   - "11212:11211"
+
+redis:
+  image: redis-server
+  container_name: redis-cluster
+  ports:
+    - "6379:6379"
+  command: redis-server:
