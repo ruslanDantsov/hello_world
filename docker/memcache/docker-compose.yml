@@ -1,0 +1,12 @@
+cache1:
+  image: memcached
+  expose:
+   - 11211
+  ports:
+   - "11211:11211"
+cache2:
+  image: memcached
+  expose:
+   - 11211
+  ports:
+   - "11212:11211"
