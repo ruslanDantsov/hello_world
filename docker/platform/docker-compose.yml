@@ -14,8 +14,8 @@ cache2:
    - "11212:11211"
 
 redis:
-  image: redis-server
-  container_name: redis
+  image: redis
+  container_name: redis-cluster
   ports:
     - "6379:6379"
   command: redis-server
