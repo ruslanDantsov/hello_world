@@ -33,3 +33,15 @@ postgres:
     - POSTGRES_DB=octi
     - POSTGRES_USER=octi
     - POSTGRES_PASSWORD=octi
+    
+configservice:
+  image: octi/configservice:latest
+  ports:
+   - 8888:8888
+discovery:
+  image: octi/discovery:latest
+  ports:
+   - 8761:8761
+  links:
+   - configservice 
+    
