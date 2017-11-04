@@ -46,23 +46,6 @@ discovery:
   links:
     - configservice
 
-users:
-  image: octi/users:latest
-  container_name: users
-  ports:
-    - 8585:8585
-  links:
-    - redis-cluster
-    - discovery
-    - configservice
-    - cache1
-    - cache2
-    - postgres9.5:db
-  environment:
-    - active.profile=default
-    - configservice.url=http://configservice:8888
-    - discovery.url=http://discovery:8761/eureka/
-
 octis:
   image: octi/octis:latest
   container_name: octis
