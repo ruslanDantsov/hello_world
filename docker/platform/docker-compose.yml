@@ -52,7 +52,7 @@ octis:
   ports:
     - 8085:8085
   links:
-    - redis-cluster:redis-cluster
+    - redis
     - discovery
     - configservice
     - cache1
@@ -69,7 +69,7 @@ feeds:
     ports:
       - 9090:9090
     links:
-      - redis-cluster
+      - redis
       - discovery
       - configservice
       - cache1
