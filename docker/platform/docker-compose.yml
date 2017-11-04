@@ -55,8 +55,8 @@ users:
     - redis
     - discovery
     - configservice
-    - memcache_cache1_1:cache1
-    - memcache_cache2_1:cache2
+    - cache1:cache1
+    - cache2:cache2
     - postgres:db
   environment:
     - active.profile=default
@@ -72,8 +72,8 @@ octis:
     - redis
     - discovery
     - configservice
-    - memcache_cache1_1:cache1
-    - memcache_cache2_1:cache2
+    - cache1:cache1
+    - cache2:cache2
     - postgres:db
   environment:
     - active.profile=default
@@ -89,8 +89,8 @@ graph:
     - redis
     - discovery
     - configservice
-    - memcache_cache1_1:cache1
-    - memcache_cache2_1:cache2
+    - cache1:cache1
+    - cache2:cache2
   environment:
     - active.profile=default
     - configservice.url=http://configservice:8888
@@ -105,8 +105,8 @@ feeds:
       - redis
       - discovery
       - configservice
-      - memcache_cache1_1:cache1
-      - memcache_cache2_1:cache2
+      - cache1:cache1
+      - cache2:cache2
     environment:
       - active.profile=default
       - configservice.url=http://configservice:8888
