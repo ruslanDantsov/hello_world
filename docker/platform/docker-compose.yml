@@ -1,4 +1,5 @@
 
+
 cache1:
   image: memcached
   expose:
@@ -51,7 +52,7 @@ feeds:
     ports:
       - 9090:9090
     links:
-      - redis-cluster
+      - redis-cluster:redis-cluster
       - discovery
       - configservice
       - cache1
