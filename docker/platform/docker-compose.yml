@@ -1,5 +1,4 @@
 
-
 cache1:
   image: memcached
   expose:
@@ -41,45 +40,65 @@ configservice:
     - 8888:8888
 
 discovery:
-    image: octi/discovery:latest
+  image: octi/discovery:latest
     ports:
       - 8761:8761
-    links:
-      - configservice
-
-feeds:
-    image: octi/feeds:latest
-    ports:
-      - 9090:9090
-    links:
-      - redis-cluster:redis-cluster
-      - discovery
-      - configservice
-      - cache1
-      - cache2
-    environment:
-      - active.profile=default
-      - configservice.url=http://configservice:8888
-      - discovery.url=http://discovery:8761/eureka/
+  links:
+    - configservice
 
 users:
-    image: octi/users:latest
-    ports:
-      - 8585:8585
-    links:
-      - redis-cluster:redis-cluster
-      - discovery
-      - configservice
-      - cache1
-      - cache2
-      - postgres9.5:db
-    environment:
-      - active.profile=default
-      - configservice.url=http://configservice:8888
-      - discovery.url=http://discovery:8761/eureka/
+  image: octi/users:latest
+  container_name: users
+  ports:
+    - 8585:8585
+  links:
+    - redis-cluster:redis-cluster
+    - discovery
+    - configservice
+    - cache1
+    - cache2
+    - postgres9.5:db
+  environment:
+    - active.profile=default
+    - configservice.url=http://configservice:8888
+    - discovery.url=http://discovery:8761/eureka/
+
+octis:
+  image: octi/octis:latest
+  container_name: octis
+  ports:
+    - 8085:8085
+  links:
+    - redis-cluster:redis-cluster
+    - discovery
+    - configservice
+    - cache1
+    - cache2
+    - postgres9.5:db
+  environment:
+    - active.profile=default
+    - configservice.url=http://configservice:8888
+    - discovery.url=http://discovery:8761/eureka/
+
+graph:
+  image: octi/graph:latest
+  container_name: graph
+  ports:
+    - 9595:9595
+  links:
+    - redis-cluster:redis-cluster
+    - discovery
+    - configservice
+    - cache1
+    - cache2
+  environment:
+    - active.profile=default
+    - configservice.url=http://configservice:8888
+    - discovery.url=http://discovery:8761/eureka/
 
 feeds:
     image: octi/feeds:latest
+    container_name: feeds
     ports:
       - 9090:9090
     links:
