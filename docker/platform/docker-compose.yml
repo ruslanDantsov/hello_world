@@ -24,7 +24,7 @@ redis:
 
 postgres:
   image: octi/postgres
-  container_name: postgres9.5
+  container_name: postgres
   expose:
     - 5432
   ports:
@@ -46,6 +46,23 @@ discovery:
   links:
     - configservice
 
+users:
+  image: octi/users:latest
+  container_name: users
+  ports:
+    - 8585:8585
+  links:
+    - redis
+    - discovery
+    - configservice
+    - cache1
+    - cache2
+    - postgres:db
+  environment:
+    - active.profile=default
+    - configservice.url=http://configservice:8888
+    - discovery.url=http://discovery:8761/eureka/
+
 octis:
   image: octi/octis:latest
   container_name: octis
@@ -57,7 +74,23 @@ octis:
     - configservice
     - cache1
     - cache2
-    - postgres9.5:db
+    - postgres:db
+  environment:
+    - active.profile=default
+    - configservice.url=http://configservice:8888
+    - discovery.url=http://discovery:8761/eureka/
+
+graph:
+  image: octi/graph:latest
+  container_name: graph
+  ports:
+    - 9595:9595
+  links:
+    - redis
+    - discovery
+    - configservice
+    - cache1
+    - cache2
   environment:
     - active.profile=default
     - configservice.url=http://configservice:8888
