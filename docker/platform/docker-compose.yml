@@ -41,8 +41,8 @@ configservice:
 
 discovery:
   image: octi/discovery:latest
-    ports:
-      - 8761:8761
+  ports:
+    - 8761:8761
   links:
     - configservice
 
