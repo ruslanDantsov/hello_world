@@ -23,7 +23,7 @@ redis:
   command: redis-server
 
 postgres:
-  image: octi/postgres 
+  image: octi/postgres
   container_name: postgres9.5
   expose:
     - 5432
@@ -33,15 +33,62 @@ postgres:
     - POSTGRES_DB=octi
     - POSTGRES_USER=octi
     - POSTGRES_PASSWORD=octi
-    
+
 configservice:
   image: octi/configservice:latest
   ports:
-   - 8888:8888
+    - 8888:8888
+
 discovery:
-  image: octi/discovery:latest
-  ports:
-   - 8761:8761
-  links:
-   - configservice 
-    
+    image: octi/discovery:latest
+    ports:
+      - 8761:8761
+    links:
+      - configservice
+
+feeds:
+    image: octi/feeds:latest
+    ports:
+      - 9090:9090
+    links:
+      - redis-cluster
+      - discovery
+      - configservice
+      - cache1
+      - cache2
+    environment:
+      - active.profile=default
+      - configservice.url=http://configservice:8888
+      - discovery.url=http://discovery:8761/eureka/
+
+users:
+    image: octi/users:latest
+    ports:
+      - 8585:8585
+    links:
+      - redis-cluster
+      - discovery
+      - configservice
+      - cache1
+      - cache2
+      - postgres9.5:db
+    environment:
+      - active.profile=default
+      - configservice.url=http://configservice:8888
+      - discovery.url=http://discovery:8761/eureka/
+
+feeds:
+    image: octi/feeds:latest
+    ports:
+      - 9090:9090
+    links:
+      - redis-cluster
+      - discovery
+      - configservice
+      - cache1
+      - cache2
+    environment:
+      - active.profile=default
+      - configservice.url=http://configservice:8888
+      - discovery.url=http://discovery:8761/eureka/
+
