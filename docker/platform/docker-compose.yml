@@ -67,7 +67,7 @@ users:
     ports:
       - 8585:8585
     links:
-      - redis-cluster
+      - redis-cluster:redis-cluster
       - discovery
       - configservice
       - cache1
