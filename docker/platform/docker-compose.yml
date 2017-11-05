@@ -105,8 +105,8 @@ feeds:
       - redis
       - discovery
       - configservice
-      - platform_cache1_1:cache1
-      - platform_cache2_1:cache2
+      - cache1
+      - cache2
     environment:
       - active.profile=default
       - configservice.url=http://configservice:8888
