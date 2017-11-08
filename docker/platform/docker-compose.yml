@@ -102,7 +102,7 @@ graph:
     - discovery.url=http://discovery:8761/eureka/
 
 feeds:
-  image: octi/feeds:latest
+  image: octi/feeds:my
   container_name: feeds
   restart: always
   ports:
@@ -128,3 +128,6 @@ apigateway:
     - active.profile=default
   links:
     - users
+    - feeds
+    - graph
+    - octis
