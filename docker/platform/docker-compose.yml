@@ -118,4 +118,17 @@ feeds:
     - configservice.url=http://configservice:8888
     - discovery.url=http://discovery:8761/eureka/
 
+apigateway:
+  image: octi/apigateway:latest
+  container_name: apigateway
+  restart: always
+  ports:
+    - 8080:8080
+  environment:
+    - active.profile=default
+  links:
+    - users
+    - feeds
+    - graph
+    - octis
 
