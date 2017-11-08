@@ -126,3 +126,5 @@ apigateway:
     - 8080:8080
   environment:
     - active.profile=default
+  links:
+    - users
