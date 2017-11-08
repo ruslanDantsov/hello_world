@@ -67,7 +67,7 @@ users:
     - discovery.url=http://discovery:8761/eureka/
 
 octis:
-  image: octi/octis:latest
+  image: octi/octis:my
   container_name: octis
   restart: always
   ports:
