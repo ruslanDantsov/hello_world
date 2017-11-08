@@ -49,7 +49,7 @@ discovery:
     - configservice
 
 users:
-  image: octi/users:latest
+  image: octi/users:my
   container_name: users
   restart: always
   ports:
