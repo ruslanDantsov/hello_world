@@ -97,18 +97,30 @@ graph:
     - discovery.url=http://discovery:8761/eureka/
 
 feeds:
-    image: octi/feeds:latest
-    container_name: feeds
-    ports:
-      - 9090:9090
-    links:
-      - redis
-      - discovery
-      - configservice
-      - cache1
-      - cache2
-    environment:
-      - active.profile=default
-      - configservice.url=http://configservice:8888
-      - discovery.url=http://discovery:8761/eureka/
+  image: octi/feeds:latest
+  container_name: feeds
+  ports:
+    - 9090:9090
+  links:
+    - redis
+    - discovery
+    - configservice
+    - cache1
+    - cache2
+  environment:
+    - active.profile=default
+    - configservice.url=http://configservice:8888
+    - discovery.url=http://discovery:8761/eureka/
 
+apigateway:
+  image: octi/apigateway:latest
+  container_name: apigateway
+  ports:
+    - 8080:8080
+  links:
+    - discovery
+    - configservice
+  environment:
+    - active.profile=default
+    - configservice.url=http://configservice:8888
+    - discovery.url=http://discovery:8761/eureka/
