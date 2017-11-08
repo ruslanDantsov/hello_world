@@ -85,7 +85,7 @@ octis:
     - discovery.url=http://discovery:8761/eureka/
 
 graph:
-  image: octi/graph:latest
+  image: octi/graph:my
   container_name: graph
   restart: always
   ports:
