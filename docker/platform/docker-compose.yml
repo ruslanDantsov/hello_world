@@ -36,11 +36,13 @@ postgres:
 
 configservice:
   image: octi/configservice:latest
+  restart: always
   ports:
     - 8888:8888
 
 discovery:
   image: octi/discovery:latest
+  restart: always
   ports:
     - 8761:8761
   links:
@@ -49,6 +51,7 @@ discovery:
 users:
   image: octi/users:latest
   container_name: users
+  restart: always
   ports:
     - 8585:8585
   links:
@@ -66,6 +69,7 @@ users:
 octis:
   image: octi/octis:latest
   container_name: octis
+  restart: always
   ports:
     - 8085:8085
   links:
@@ -83,6 +87,7 @@ octis:
 graph:
   image: octi/graph:latest
   container_name: graph
+  restart: always
   ports:
     - 9595:9595
   links:
@@ -99,6 +104,7 @@ graph:
 feeds:
   image: octi/feeds:latest
   container_name: feeds
+  restart: always
   ports:
     - 9090:9090
   links:
@@ -115,12 +121,8 @@ feeds:
 apigateway:
   image: octi/apigateway:latest
   container_name: apigateway
+  restart: always
   ports:
     - 8080:8080
-  links:
-    - discovery
-    - configservice
   environment:
     - active.profile=default
-    - configservice.url=http://configservice:8888
-    - discovery.url=http://discovery:8761/eureka/
